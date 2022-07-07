@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Formik, Field } from 'formik'
 import * as yup from 'yup'
 import CustomInput from '../components/CustomInput'
-
+import axios from "axios";
 export default function App() {
   const signInValidationSchema = yup.object().shape({
     phoneNumber: yup
@@ -19,6 +19,16 @@ export default function App() {
       .min(8, ({ min }) => `Password must be at least ${min} characters`)
       .required('Password is required'),
   })
+
+  const handleSubmit = (data) => {
+    console.log(data)
+    axios.post('http://localhost:3000/auth/signin', data)
+      .then(res => localStorage.setItem("authToken", res.data.accessToken))
+      .catch((err) => {
+        throw new Error(err.response.body.message);
+      });
+
+  };
 
   return (
     <LinearGradient
@@ -41,7 +51,7 @@ export default function App() {
               phoneNumber: '',
               password: '',
             }}
-            onSubmit={values => console.log(values)}
+            onSubmit={values => handleSubmit(values)}
             validationSchema={signInValidationSchema}
           >
             {({ handleSubmit, isValid }) => (

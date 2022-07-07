@@ -4,7 +4,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Formik, Field } from 'formik'
 import * as yup from 'yup'
 import CustomInput from '../components/CustomInput'
-
+import axios from 'axios';
+// import { useSignupMutation } from "../utils/hooks";
 export default function App() {
   const signUpValidationSchema = yup.object().shape({
     Username: yup
@@ -28,6 +29,10 @@ export default function App() {
       .required('Confirm password is required'),
   })
 
+  const handleSubmit = (data) => {
+    axios.post('http://localhost:3000/auth/signup', data)
+      .then(res => console.log("Response", res.data));
+  };
   return (
     <LinearGradient
       start={{ x: 0, y: 0 }}
@@ -49,7 +54,7 @@ export default function App() {
               phoneNumber: '',
               password: '',
             }}
-            onSubmit={values => console.log(values)}
+            onSubmit={values => handleSubmit(values)}
             validationSchema={signUpValidationSchema}
           >
             {({ handleSubmit, isValid }) => (
