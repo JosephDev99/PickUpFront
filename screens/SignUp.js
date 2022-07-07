@@ -111,7 +111,3 @@ export default function App() {
     </LinearGradient >
   );
 }
-
-const styles = StyleSheet.create({
-
-});

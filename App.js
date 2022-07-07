@@ -2,7 +2,7 @@
 // import { StyleSheet, Text, View } from 'react-native';
 // import SignInScreen from './screens/SignIn'
 // import SignUpScreen from './screens/SignUp'
-import Map from './screens/Map.js'
+import Routes from './Routes.js'
 // import { NavigationContainer } from '@react-navigation/native';
 // import { enableScreens } from 'react-native-screens';
 // import Screens from './navigation/Screens';
@@ -12,7 +12,7 @@ export default function App() {
     // <View>
     //   {/* <SignInScreen />
     //   <SignUpScreen /> */}
-    <Map />
+    <Routes />
     // </View>
     // <NavigationContainer>
     //   <Block flex>
@@ -21,7 +21,3 @@ export default function App() {
     // </NavigationContainer>
   );
 }
-
-// const styles = StyleSheet.create({
-
-// });
